@@ -32,4 +32,14 @@ public class SingleGameActivity extends AppCompatActivity {
 
         logger = logComponent.provideILogger();
     }
+
+
+    public void cellClick(View v) {
+
+    }
+
+    //Even for when the user changes between going first and going second
+    public void onRadioButtonClicked(View view) {
+    }
+
 }
