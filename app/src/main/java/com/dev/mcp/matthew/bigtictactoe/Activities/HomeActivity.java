@@ -21,7 +21,6 @@ public class HomeActivity extends MyFullScreenActivity {
 
     ILogger logger;
 
-
     @Bind(R.id.home_play_btn)
     Button button;
 
@@ -40,7 +39,6 @@ public class HomeActivity extends MyFullScreenActivity {
 
         ILoggerComponent logComponent;
         logComponent = DaggerILoggerComponent.builder().iLoggerModule(new ILoggerModule()).build();
-
         logger = logComponent.provideILogger();
     }
 
