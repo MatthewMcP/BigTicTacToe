@@ -1,9 +1,8 @@
 package com.dev.mcp.matthew.bigtictactoe.Modules;
 
 import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
-import com.dev.mcp.matthew.bigtictactoe.Game.Board;
+import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
 import com.dev.mcp.matthew.bigtictactoe.Game.ComputerPlayer;
-import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,6 +12,6 @@ public class IComputerPlayerModule {
 
     @Provides
     IComputerPlayer provideComputerPlayer() {
-        return new ComputerPlayer();
+        return new ComputerPlayer(CellState.OMark);
     }
 }

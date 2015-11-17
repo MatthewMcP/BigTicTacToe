@@ -3,7 +3,6 @@ package com.dev.mcp.matthew.bigtictactoe.Activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import com.dev.mcp.matthew.bigtictactoe.Components.DaggerILoggerComponent;
@@ -24,13 +23,6 @@ public class HomeActivity extends MyFullScreenActivity {
     @Bind(R.id.home_play_btn)
     Button button;
 
-    @OnClick(value = R.id.home_play_btn)
-    public void addListenerBtn() {
-        final Context context = this;
-        Intent intent = new Intent(context, SingleGameActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,5 +34,10 @@ public class HomeActivity extends MyFullScreenActivity {
         logger = logComponent.provideILogger();
     }
 
-
+    @OnClick(value = R.id.home_play_btn)
+    public void addListenerBtn() {
+        final Context context = this;
+        Intent intent = new Intent(context, SingleGameActivity.class);
+        startActivity(intent);
+    }
 }

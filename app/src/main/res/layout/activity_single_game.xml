@@ -26,7 +26,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#ffffff"
+                android:background="@drawable/black"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
@@ -39,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#ffffff"
+                android:background="@drawable/black"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
@@ -52,7 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#ffffff"
+                android:background="@drawable/black"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
@@ -74,7 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#ffffff"
+                android:background="@drawable/black"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
@@ -87,7 +87,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#ffffff"
+                android:background="@drawable/black"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
@@ -100,7 +100,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#ffffff"
+                android:background="@drawable/black"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
@@ -166,6 +166,7 @@
         android:orientation="horizontal">
 
         <RadioGroup
+            android:id="@+id/activity_singlegame_radioBtns"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -177,25 +178,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:onClick="onRadioButtonClicked"
                 android:text="@string/XConst" />
 
             <RadioButton
                 android:id="@+id/radio_O"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:text="@string/OConst" />
         </RadioGroup>
 
         <TextView
-            android:id="@+id/Reset"
+            android:id="@+id/activity_singlegame_reset"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:clickable="true"
             android:gravity="center"
-            android:onClick="resetClick"
             android:text="@string/ResetBoard"
             android:textSize="20sp" />
 

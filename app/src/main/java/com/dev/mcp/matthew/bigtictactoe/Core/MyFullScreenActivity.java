@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBar;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.dev.mcp.matthew.bigtictactoe.R;
 
 public class MyFullScreenActivity extends MyBaseActivity {
     /**

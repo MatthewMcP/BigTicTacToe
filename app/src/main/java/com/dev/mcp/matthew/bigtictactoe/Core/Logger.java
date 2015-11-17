@@ -5,9 +5,7 @@ import android.util.Log;
 
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.ILogger;
 
-/**
- * Created by matthew on 06/11/15.
- */
+
 public class Logger implements ILogger {
     @Override
     public void v(String ActivityName, String Message) {

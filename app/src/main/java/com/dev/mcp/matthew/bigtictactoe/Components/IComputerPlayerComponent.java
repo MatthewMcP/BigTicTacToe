@@ -1,7 +1,6 @@
 package com.dev.mcp.matthew.bigtictactoe.Components;
 
 import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
-import com.dev.mcp.matthew.bigtictactoe.Modules.IBoardModule;
 import com.dev.mcp.matthew.bigtictactoe.Modules.IComputerPlayerModule;
 
 import javax.inject.Singleton;

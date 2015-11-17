@@ -1,8 +1,5 @@
 package com.dev.mcp.matthew.bigtictactoe.Interfaces;
 
-/**
- * Created by matthew on 06/11/15.
- */
 public interface ILogger {
 
     void v(String ActivityName, String Message);

@@ -1,10 +1,11 @@
 package com.dev.mcp.matthew.bigtictactoe.Core;
 
+import android.graphics.Point;
+
+import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
 
 public interface IPlayer {
 
-    int[] move(IBoard board, String marker);
-
-    boolean hasWon(String player);
+    Point getMove(IBoard board);
 }

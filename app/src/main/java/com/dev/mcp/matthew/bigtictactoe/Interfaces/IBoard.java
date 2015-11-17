@@ -1,12 +1,16 @@
 package com.dev.mcp.matthew.bigtictactoe.Interfaces;
 
+import android.graphics.Point;
+
+import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
+
 public interface IBoard {
 
     void clear();
 
-    String[][] getBoard();
+    CellState[][] getBoard();
 
-    void placeMark(int xloc, int yloc, String mark);
+    void placeMark(Point markLoc, CellState mark);
 
     boolean isWinner();
 }

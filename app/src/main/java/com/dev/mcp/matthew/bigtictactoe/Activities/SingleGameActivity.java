@@ -1,18 +1,20 @@
 package com.dev.mcp.matthew.bigtictactoe.Activities;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dev.mcp.matthew.bigtictactoe.Components.*;
+import com.dev.mcp.matthew.bigtictactoe.Components.DaggerIBoardComponent;
+import com.dev.mcp.matthew.bigtictactoe.Components.DaggerIComputerPlayerComponent;
+import com.dev.mcp.matthew.bigtictactoe.Components.DaggerILoggerComponent;
+import com.dev.mcp.matthew.bigtictactoe.Components.IBoardComponent;
+import com.dev.mcp.matthew.bigtictactoe.Components.IComputerPlayerComponent;
+import com.dev.mcp.matthew.bigtictactoe.Components.ILoggerComponent;
 import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
@@ -22,10 +24,9 @@ import com.dev.mcp.matthew.bigtictactoe.Modules.IComputerPlayerModule;
 import com.dev.mcp.matthew.bigtictactoe.Modules.ILoggerModule;
 import com.dev.mcp.matthew.bigtictactoe.R;
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
+import butterknife.Bind;
+import butterknife.OnClick;
+
 public class SingleGameActivity extends MyFullScreenActivity {
 
     ILogger logger;
@@ -33,8 +34,16 @@ public class SingleGameActivity extends MyFullScreenActivity {
     IComputerPlayer computerPlayer;
 
     private int moveCount = 0, xloc = 0, yloc = 0;
-    private String mark = getResources().getString(R.string.XConst), aiMark = getResources().getString(R.string.OConst);
+    private String mark = "X", aiMark = "O";
+    //private String mark = getResources().getString(R.string.XConst), aiMark = getResources().getString(R.string.OConst);
     private boolean isOver = false;
+
+
+    @Bind(R.id.activity_singlegame_reset)
+    Button button;
+
+    @Bind(R.id.activity_singlegame_radioBtns)
+    RadioButton radioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +63,29 @@ public class SingleGameActivity extends MyFullScreenActivity {
         computerPlayer = computerPlayerComponentComponent.provideComputerPlayer();
     }
 
-    //Action when reset is clicked which clears the screen and the virtual game board
-    public void resetClick(View v) {
+    @OnClick(value = R.id.activity_singlegame_reset)
+    public void resetClick() {
         clear();
         if (aiMark == "X") getAIMove(gameBoard);
+    }
+
+    @OnClick(value = R.id.activity_singlegame_radioBtns)
+    public void onRadioButtonClicked(View view) {
+        View viewChild = ((ViewGroup) view).getChildAt(0);
+
+        switch (viewChild.getId()) {
+            case R.id.radio_X:
+                mark = "X";
+                aiMark = "O";
+                clear();
+                break;
+            case R.id.radio_O:
+                mark = "O";
+                aiMark = "X";
+                clear();
+                getAIMove(gameBoard);
+                break;
+        }
     }
 
     //Action for when a cell is clicked. Determines which cell has been clicked and passed that
@@ -125,30 +153,6 @@ public class SingleGameActivity extends MyFullScreenActivity {
         }
     }
 
-    //Even for when the user changes between going first and going second
-    public void onRadioButtonClicked(View view) {
-        //Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        //Check which radio button was clicked
-        switch (view.getId()) {
-            //If the user wants to be X just clear the board and wait for his move
-            case R.id.radio_X:
-                if (checked)
-                    mark = "X";
-                aiMark = "O";
-                clear();
-                break;
-            //If the user wants to be O's then clear the board and get the AI's opening move
-            case R.id.radio_O:
-                if (checked)
-                    mark = "O";
-                aiMark = "X";
-                clear();
-                getAIMove(gameBoard);
-                break;
-        }
-    }
 
     //Checks to see if the game has ended provided with the last player to make a move
     private boolean checkEnd(String player) {

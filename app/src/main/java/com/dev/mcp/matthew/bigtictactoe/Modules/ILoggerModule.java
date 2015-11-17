@@ -6,9 +6,7 @@ import com.dev.mcp.matthew.bigtictactoe.Interfaces.ILogger;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by matthew on 06/11/15.
- */
+
 @Module
 public class ILoggerModule {
 
