@@ -1,11 +1,13 @@
 package com.dev.mcp.matthew.bigtictactoe.Activities;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import com.dev.mcp.matthew.bigtictactoe.Components.IComputerPlayerComponent;
 import com.dev.mcp.matthew.bigtictactoe.Components.ILoggerComponent;
 import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
+import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.ILogger;
 import com.dev.mcp.matthew.bigtictactoe.Modules.IBoardModule;
@@ -25,6 +28,7 @@ import com.dev.mcp.matthew.bigtictactoe.Modules.ILoggerModule;
 import com.dev.mcp.matthew.bigtictactoe.R;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SingleGameActivity extends MyFullScreenActivity {
@@ -34,21 +38,22 @@ public class SingleGameActivity extends MyFullScreenActivity {
     IComputerPlayer computerPlayer;
 
     private int moveCount = 0, xloc = 0, yloc = 0;
-    private String mark = "X", aiMark = "O";
+    private CellState mark = CellState.XMark, aiMark = CellState.OMark;
     //private String mark = getResources().getString(R.string.XConst), aiMark = getResources().getString(R.string.OConst);
     private boolean isOver = false;
 
 
     @Bind(R.id.activity_singlegame_reset)
-    Button button;
+    TextView button;
 
     @Bind(R.id.activity_singlegame_radioBtns)
-    RadioButton radioButton;
+    RadioGroup radioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_game);
+        ButterKnife.bind(this);
 
         ILoggerComponent logComponent;
         logComponent = DaggerILoggerComponent.builder().iLoggerModule(new ILoggerModule()).build();
@@ -66,7 +71,9 @@ public class SingleGameActivity extends MyFullScreenActivity {
     @OnClick(value = R.id.activity_singlegame_reset)
     public void resetClick() {
         clear();
-        if (aiMark == "X") getAIMove(gameBoard);
+        if (aiMark == CellState.XMark) {
+            getAIMove(gameBoard);
+        }
     }
 
     @OnClick(value = R.id.activity_singlegame_radioBtns)
@@ -75,27 +82,33 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
         switch (viewChild.getId()) {
             case R.id.radio_X:
-                mark = "X";
-                aiMark = "O";
+                mark = CellState.XMark;
+                aiMark = CellState.OMark;
                 clear();
                 break;
             case R.id.radio_O:
-                mark = "O";
-                aiMark = "X";
+                mark = CellState.OMark;
+                aiMark = CellState.XMark;
                 clear();
                 getAIMove(gameBoard);
                 break;
         }
     }
 
-    //Action for when a cell is clicked. Determines which cell has been clicked and passed that
-    //	information on the the virtual game board.
     public void cellClick(View v) {
         //Get the id of the clicked object and assign it to a Textview variable
         TextView cell = (TextView) findViewById(v.getId());
         //Check the content and make sure the cell is empty and that the game isn't over
         String content = (String) cell.getText();
-        if (content == "" && !isOver) {
+        CellState current;
+        if (content == "X") {
+            current = CellState.XMark;
+        } else if (content == "") {
+            current = CellState.Empty;
+        } else {
+            current = CellState.OMark;
+        }
+        if (current == CellState.Empty && !isOver) {
             //Find the X Y location values of the particular cell that was clicked
             switch (cell.getId()) {
                 case R.id.cell11:
@@ -137,8 +150,9 @@ public class SingleGameActivity extends MyFullScreenActivity {
             }
 
             //Place the player's mark on the specific X Y location on both the virtual and displayed board
-            gameBoard.placeMark(xloc, yloc, mark);
-            cell.setText(mark);
+            gameBoard.placeMark(new Point(xloc, yloc), mark);
+
+            cell.setText(mark.toString());
 
             //Increment move Count because a move was just made
             moveCount++;
@@ -155,15 +169,15 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
 
     //Checks to see if the game has ended provided with the last player to make a move
-    private boolean checkEnd(String player) {
+    private boolean checkEnd(CellState player) {
         //Checks the virtual board for a winner if there's a winner announce it with the provided player
         if (gameBoard.isWinner()) {
-            announce(true, player);
+            announce(true, player.toString());
             return true;
         }
         //Check to see if we've reached our move total meaning it's a draw
         else if (moveCount >= 9) {
-            announce(false, player);
+            announce(false, player.toString());
             return true;
         }
         //If neither win or draw then the game is still on
@@ -207,12 +221,12 @@ public class SingleGameActivity extends MyFullScreenActivity {
     //Gets the AI's next move giving the current state of the board
     private void getAIMove(IBoard board) {
         //Send the board to the AI for it to determine and return the move in an array {x,y}
-        int[] move = computerPlayer.move(board, aiMark);
+        Point move = computerPlayer.getMove(board);
         TextView cell = null;
         //Determine the right cell to use by id first go to the right row then the right column
-        switch (move[0]) {
+        switch (move.x) {
             case 0:
-                switch (move[1]) {
+                switch (move.y) {
                     case 0:
                         cell = (TextView) findViewById(R.id.cell11);
                         break;
@@ -225,7 +239,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
                 }
                 break;
             case 1:
-                switch (move[1]) {
+                switch (move.y) {
                     case 0:
                         cell = (TextView) findViewById(R.id.cell21);
                         break;
@@ -238,7 +252,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
                 }
                 break;
             case 2:
-                switch (move[1]) {
+                switch (move.y) {
                     case 0:
                         cell = (TextView) findViewById(R.id.cell31);
                         break;
@@ -256,8 +270,8 @@ public class SingleGameActivity extends MyFullScreenActivity {
         //	then place the mark with the ai's Mark, increment move count
         //	and check to see if the game's over
         if (cell != null && cell.getText() == "") {
-            board.placeMark(move[0], move[1], aiMark);
-            cell.setText(aiMark);
+            board.placeMark(new Point(0, 1), aiMark);
+            cell.setText(aiMark.toString());
             moveCount++;
             isOver = checkEnd(aiMark);
         }

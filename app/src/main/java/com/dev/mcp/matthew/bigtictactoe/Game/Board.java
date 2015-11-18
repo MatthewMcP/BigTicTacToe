@@ -7,7 +7,7 @@ import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
 
 public class Board implements IBoard {
 
-    private CellState[][] board = new CellState[2][2];
+    private CellState[][] board = new CellState[3][3];
 
     public Board() {
         SetBoardAsEmpty();
