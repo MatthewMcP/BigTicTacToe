@@ -29,9 +29,9 @@ public class Board implements IBoard {
         return board;
     }
 
-    public void placeMark(Point markLoc, CellState mark) {
-        if (board[markLoc.x][markLoc.y] == CellState.Empty) {
-            board[markLoc.x][markLoc.y] = mark;
+    public void placeMark(Point point, CellState mark) {
+        if (board[point.x][point.y] == CellState.Empty) {
+            board[point.x][point.y] = mark;
         }
     }
 

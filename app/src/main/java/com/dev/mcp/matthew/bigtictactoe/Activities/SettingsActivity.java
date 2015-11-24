@@ -14,35 +14,27 @@ import com.dev.mcp.matthew.bigtictactoe.R;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HomeActivity extends MyFullScreenActivity {
+public class SettingsActivity extends MyFullScreenActivity {
 
     ILogger logger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_settings);
         ButterKnife.bind(this);
 
         ILoggerComponent logComponent;
         logComponent = DaggerILoggerComponent.builder().iLoggerModule(new ILoggerModule()).build();
         logger = logComponent.provideILogger();
-        logger.i("HomeActivity", "Loaded Successfully");
+        logger.i("SettingsActivity", "Loaded Successfully");
     }
 
-    @OnClick(value = R.id.home_play_btn)
-    public void playBtnClick() {
-        logger.i("HomeActivity", "Play Button clicked, loading SingleGameActivity...");
+    @OnClick(value = R.id.settings_home_btn)
+    public void settingsBtnListener() {
+        logger.i("HomeActivity", "Settings Button clicked, loading HomeActivity...");
         final Context context = this;
-        Intent intent = new Intent(context, SingleGameActivity.class);
-        startActivity(intent);
-    }
-
-    @OnClick(value = R.id.home_settings_btn)
-    public void settingsBtnClick() {
-        logger.i("HomeActivity", "Settings Button clicked, loading SettingsActivity...");
-        final Context context = this;
-        Intent intent = new Intent(context, SettingsActivity.class);
+        Intent intent = new Intent(context, HomeActivity.class);
         startActivity(intent);
     }
 }
