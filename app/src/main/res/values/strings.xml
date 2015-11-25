@@ -5,8 +5,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_single_game">SingleGameActivity</string>
-    <string name="XConst">X</string>
-    <string name="OConst">O</string>
+    <string name="XConst" translatable="false">X</string>
+    <string name="OConst" translatable="false">O</string>
     <string name="ResetBoard">Reset</string>
     <string name="title_activity_settings">SettingsActivity</string>
 </resources>

@@ -1,25 +1,37 @@
 package com.dev.mcp.matthew.bigtictactoe.Helpers;
 
+import android.content.Context;
+
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
+import com.dev.mcp.matthew.bigtictactoe.R;
 
 public class CellStateHelper {
 
-    public static CellState StringToCellState(String text) {
-        if (text.equals("O")) {
+    private String XConstString;
+    private String OConstString;
+
+    public CellStateHelper(Context context) {
+        XConstString = context.getResources().getString(R.string.XConst);
+        OConstString = context.getResources().getString(R.string.OConst);
+    }
+
+
+    public CellState StringToCellState(String text) {
+        if (text.equals(XConstString)) {
             return CellState.XMark;
         }
-        if (text.equals("X")) {
+        if (text.equals(OConstString)) {
             return CellState.OMark;
         }
         return CellState.Empty;
     }
 
-    public static String CellStateToString(CellState cellState) {
+    public String CellStateToString(CellState cellState) {
         if (cellState == CellState.XMark) {
-            return "X";
+            return XConstString;
         }
         if (cellState == CellState.OMark) {
-            return "O";
+            return OConstString;
         }
         return "";
     }

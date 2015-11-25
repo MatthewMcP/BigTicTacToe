@@ -35,6 +35,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
     ILogger logger;
     IBoard gameBoard;
     IComputerPlayer computerPlayer;
+    CellStateHelper cellStateHelper;
 
 
     private int moveCount = 0;
@@ -58,11 +59,12 @@ public class SingleGameActivity extends MyFullScreenActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_game);
         ButterKnife.bind(this);
-        logger.i("SingleGameActivity", "Loading...");
 
         ILoggerComponent logComponent;
         logComponent = DaggerILoggerComponent.builder().iLoggerModule(new ILoggerModule()).build();
         logger = logComponent.provideILogger();
+
+        logger.i("SingleGameActivity", "Loading...");
 
         IBoardComponent boardComponent;
         boardComponent = DaggerIBoardComponent.builder().iBoardModule(new IBoardModule()).build();
@@ -72,7 +74,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
         computerPlayerComponentComponent = DaggerIComputerPlayerComponent.builder().iComputerPlayerModule(new IComputerPlayerModule()).build();
         computerPlayer = computerPlayerComponentComponent.provideComputerPlayer();
 
-
+        cellStateHelper = new CellStateHelper(this);
         logger.i("SingleGameActivity", "Loaded Successfully");
     }
 
@@ -125,14 +127,14 @@ public class SingleGameActivity extends MyFullScreenActivity {
         Point pointClicked = GetPlayerClickPoint(cell);
 
         gameBoard.placeMark(pointClicked, mark);
-        cell.setText(CellStateHelper.CellStateToString(mark));
+        cell.setText(cellStateHelper.CellStateToString(mark));
         EndOfTurn(mark);
     }
 
     private Point GetPlayerClickPoint(TextView cell) {
         String content = (String) cell.getText();
 
-        CellState current = CellStateHelper.StringToCellState(content);
+        CellState current = cellStateHelper.StringToCellState(content);
 
         if (current == CellState.Empty && !isOver) {
             switch (cell.getId()) {
@@ -202,7 +204,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
         if (cell != null && cell.getText().equals("")) {
             board.placeMark(move, aiMark);
-            String cellStateString = CellStateHelper.CellStateToString(aiMark);
+            String cellStateString = cellStateHelper.CellStateToString(aiMark);
             cell.setText(cellStateString);
             EndOfTurn(aiMark);
         }
