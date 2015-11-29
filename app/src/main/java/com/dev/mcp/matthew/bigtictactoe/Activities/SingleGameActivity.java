@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +24,6 @@ import com.dev.mcp.matthew.bigtictactoe.Modules.IComputerPlayerModule;
 import com.dev.mcp.matthew.bigtictactoe.Modules.ILoggerModule;
 import com.dev.mcp.matthew.bigtictactoe.R;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -47,12 +44,6 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
     private int[] idList = {R.id.cell11, R.id.cell12, R.id.cell13, R.id.cell21,
             R.id.cell22, R.id.cell23, R.id.cell31, R.id.cell32, R.id.cell33};
-
-    @Bind(R.id.activity_singlegame_reset)
-    TextView button;
-
-    @Bind(R.id.activity_singlegame_radioBtns)
-    RadioGroup radioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +69,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
         logger.i("SingleGameActivity", "Loaded Successfully");
     }
 
-    @OnClick(value = R.id.activity_singlegame_reset)
+    @OnClick(value = R.id.singlegame_reset)
     public void resetClick() {
         logger.i("SingleGameActivity", "Resetting board...");
         clear();
@@ -100,65 +91,66 @@ public class SingleGameActivity extends MyFullScreenActivity {
         gameBoard.clear();
     }
 
-    @OnClick(value = R.id.activity_singlegame_radioBtns)
-    public void onRadioButtonClicked(View view) {
-        logger.i("SingleGameActivity", "RadioBtn Clicked.");
+    @OnClick(value = R.id.singlegame_radioBtn_X)
+    public void xRadioBtnClicked(View view) {
+        logger.i("SingleGameActivity", "X RadioBtn Clicked, Player is X");
+        mark = CellState.XMark;
+        aiMark = CellState.OMark;
+        clear();
+    }
 
-        View viewChild = ((ViewGroup) view).getChildAt(0);
-        switch (viewChild.getId()) {
-            case R.id.radio_X:
-                logger.i("SingleGameActivity", "Player is X");
-                mark = CellState.XMark;
-                aiMark = CellState.OMark;
-                clear();
-                break;
-            case R.id.radio_O:
-                logger.i("SingleGameActivity", "Player is O");
-                mark = CellState.OMark;
-                aiMark = CellState.XMark;
-                clear();
-                getAIMove(gameBoard);
-                break;
-        }
+    @OnClick(value = R.id.singlegame_radioBtn_O)
+    public void oRadioBtnClicked(View view) {
+        logger.i("SingleGameActivity", "O RadioBtn Clicked, Player is O");
+        mark = CellState.OMark;
+        aiMark = CellState.XMark;
+        clear();
+        getAIMove(gameBoard);
     }
 
     public void cellClick(View v) {
         TextView cell = (TextView) findViewById(v.getId());
-        Point pointClicked = GetPlayerClickPoint(cell);
 
-        gameBoard.placeMark(pointClicked, mark);
-        cell.setText(cellStateHelper.CellStateToString(mark));
-        EndOfTurn(mark);
+        if (ValidMove(cell)) {
+            Point pointClicked = GetPlayerClickPoint(cell);
+            gameBoard.placeMark(pointClicked, mark);
+            cell.setText(cellStateHelper.CellStateToString(mark));
+            EndOfTurn(mark);
+        }
     }
 
     private Point GetPlayerClickPoint(TextView cell) {
-        String content = (String) cell.getText();
+        switch (cell.getId()) {
+            case R.id.cell11:
+                return new Point(0, 0);
+            case R.id.cell12:
+                return new Point(0, 1);
+            case R.id.cell13:
+                return new Point(0, 2);
+            case R.id.cell21:
+                return new Point(1, 0);
+            case R.id.cell22:
+                return new Point(1, 1);
+            case R.id.cell23:
+                return new Point(1, 2);
+            case R.id.cell31:
+                return new Point(2, 0);
+            case R.id.cell32:
+                return new Point(2, 1);
+            default:
+                return new Point(2, 2);
+        }
+    }
 
+    private boolean ValidMove(TextView cell) {
+        String content = (String) cell.getText();
         CellState current = cellStateHelper.StringToCellState(content);
 
         if (current == CellState.Empty && !isOver) {
-            switch (cell.getId()) {
-                case R.id.cell11:
-                    return new Point(0, 0);
-                case R.id.cell12:
-                    return new Point(0, 1);
-                case R.id.cell13:
-                    return new Point(0, 2);
-                case R.id.cell21:
-                    return new Point(1, 0);
-                case R.id.cell22:
-                    return new Point(1, 1);
-                case R.id.cell23:
-                    return new Point(1, 2);
-                case R.id.cell31:
-                    return new Point(2, 0);
-                case R.id.cell32:
-                    return new Point(2, 1);
-                case R.id.cell33:
-                    return new Point(2, 2);
-            }
+            return true;
         }
-        return new Point(0, 0);
+
+        return false;
     }
 
     private void EndOfTurn(CellState mark) {

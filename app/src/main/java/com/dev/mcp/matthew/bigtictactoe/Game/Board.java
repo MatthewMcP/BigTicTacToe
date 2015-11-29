@@ -64,7 +64,7 @@ public class Board implements IBoard {
     private boolean DiagonalWinner() {
         if (board[0][0] != CellState.Empty && board[0][0] == board[1][1] && board[0][0] == board[2][2]) {
             return true;
-        } else if (board[2][0] != CellState.Empty && board[0][0] == board[1][1] && board[0][0] == board[0][2]) {
+        } else if (board[2][0] != CellState.Empty && board[2][0] == board[1][1] && board[2][0] == board[0][2]) {
             return true;
         }
         return false;

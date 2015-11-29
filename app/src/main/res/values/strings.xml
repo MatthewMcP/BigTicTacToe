@@ -4,9 +4,16 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="home_playBtnTxt">PLAY!</string>
+    <string name="home_SettingsBtnTxt">SETTINGS</string>
+
+
     <string name="title_activity_single_game">SingleGameActivity</string>
     <string name="XConst" translatable="false">X</string>
     <string name="OConst" translatable="false">O</string>
     <string name="ResetBoard">Reset</string>
+
+
     <string name="title_activity_settings">SettingsActivity</string>
 </resources>

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="@color/Background"
     tools:context=".FullscreenActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -12,9 +12,9 @@
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="top"
         android:keepScreenOn="true"
-        android:text="@string/dummy_content"
+        android:text="@string/app_name"
         android:textColor="#33b5e5"
         android:textSize="50sp"
         android:textStyle="bold" />
@@ -32,7 +32,7 @@
             android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Play!" />
+            android:text="@string/home_playBtnTxt" />
 
 
         <Button
@@ -40,7 +40,7 @@
             android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Settings!" />
+            android:text="@string/home_SettingsBtnTxt" />
     </FrameLayout>
 
 </FrameLayout>
