@@ -21,7 +21,7 @@
             android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Home" />
+            android:text="@string/settings_homeBtnTxt" />
 
 
     </FrameLayout>

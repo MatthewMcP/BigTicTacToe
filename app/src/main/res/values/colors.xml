@@ -8,5 +8,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="black_overlay">#66000000</color>
+    <color name="CellBackGround">#96113c6e</color>
+    <color name="CellBorder">#00fcc1</color>
+    <color name="CellTextColor">#0aef44</color>
+
+
+    <color name="TextColor1">#1202f2</color>
+
 </resources>

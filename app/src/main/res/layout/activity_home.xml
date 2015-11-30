@@ -15,7 +15,7 @@
         android:gravity="top"
         android:keepScreenOn="true"
         android:text="@string/app_name"
-        android:textColor="#33b5e5"
+        android:textColor="@color/BackgroundLight"
         android:textSize="50sp"
         android:textStyle="bold" />
 
@@ -40,7 +40,7 @@
             android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="@string/home_SettingsBtnTxt" />
+            android:text="@string/home_settingsBtnTxt" />
     </FrameLayout>
 
 </FrameLayout>

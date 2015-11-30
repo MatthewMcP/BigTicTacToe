@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#4da64d"
+        android:background="@color/CellBorder"
         android:keepScreenOn="true">
 
         <TableRow
@@ -26,11 +26,12 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/black"
+                android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/CellTextColor"
                 android:textSize="50sp"
                 android:textStyle="bold" />
 
@@ -39,11 +40,12 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/black"
+                android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/CellTextColor"
                 android:textSize="50sp"
                 android:textStyle="bold" />
 
@@ -52,11 +54,12 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/black"
+                android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/CellTextColor"
                 android:textSize="50sp"
                 android:textStyle="bold" />
 
@@ -74,11 +77,12 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/black"
+                android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/CellTextColor"
                 android:textSize="50sp"
                 android:textStyle="bold" />
 
@@ -87,11 +91,12 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/black"
+                android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/CellTextColor"
                 android:textSize="50sp"
                 android:textStyle="bold" />
 
@@ -100,11 +105,12 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/black"
+                android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/CellTextColor"
                 android:textSize="50sp"
                 android:textStyle="bold" />
         </TableRow>
@@ -121,11 +127,12 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/black"
+                android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/CellTextColor"
                 android:textSize="50sp"
                 android:textStyle="bold" />
 
@@ -134,11 +141,12 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/black"
+                android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/CellTextColor"
                 android:textSize="50sp"
                 android:textStyle="bold" />
 
@@ -147,11 +155,12 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/black"
+                android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="cellClick"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/CellTextColor"
                 android:textSize="50sp"
                 android:textStyle="bold" />
 
@@ -177,13 +186,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="@string/XConst" />
+                android:text="@string/XConst"
+                android:textColor="@color/TextColor1" />
 
             <RadioButton
                 android:id="@+id/singlegame_radioBtn_O"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/OConst" />
+                android:text="@string/OConst"
+                android:textColor="@color/TextColor1" />
+
         </RadioGroup>
 
         <TextView
@@ -194,10 +206,10 @@
             android:clickable="true"
             android:gravity="center"
             android:text="@string/ResetBoard"
+            android:textColor="@color/TextColor1"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/thing"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
