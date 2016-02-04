@@ -1,8 +1,10 @@
 package com.dev.mcp.matthew.bigtictactoe.Activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.CellStateHelper;
+import com.dev.mcp.matthew.bigtictactoe.Helpers.SharedPreferencesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.ILogger;
 import com.dev.mcp.matthew.bigtictactoe.Modules.IBoardModule;
@@ -33,11 +36,11 @@ public class SingleGameActivity extends MyFullScreenActivity {
     IBoard gameBoard;
     IComputerPlayer computerPlayer;
     CellStateHelper cellStateHelper;
-
+    SharedPreferencesHelper sharedPreferencesHelper;
 
     private int moveCount = 0;
 
-    private CellState mark = CellState.XMark;
+    private CellState playerMark = CellState.XMark;
     private CellState aiMark = CellState.OMark;
 
     private boolean isOver = false;
@@ -66,6 +69,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
         computerPlayer = computerPlayerComponentComponent.provideComputerPlayer();
 
         cellStateHelper = new CellStateHelper(this);
+        sharedPreferencesHelper = new SharedPreferencesHelper();
         logger.i("SingleGameActivity", "Loaded Successfully");
     }
 
@@ -81,6 +85,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
     private void clear() {
         logger.i("SingleGameActivity", "Clearing the board");
 
+        sharedPreferencesHelper.IncreaseWins(getApplicationContext());
         for (int item : idList) {
             TextView cell = (TextView) findViewById(item);
             cell.setText("");
@@ -94,7 +99,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
     @OnClick(value = R.id.singlegame_radioBtn_X)
     public void xRadioBtnClicked(View view) {
         logger.i("SingleGameActivity", "X RadioBtn Clicked, Player is X");
-        mark = CellState.XMark;
+        playerMark = CellState.XMark;
         aiMark = CellState.OMark;
         clear();
     }
@@ -102,7 +107,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
     @OnClick(value = R.id.singlegame_radioBtn_O)
     public void oRadioBtnClicked(View view) {
         logger.i("SingleGameActivity", "O RadioBtn Clicked, Player is O");
-        mark = CellState.OMark;
+        playerMark = CellState.OMark;
         aiMark = CellState.XMark;
         clear();
         getAIMove(gameBoard);
@@ -113,9 +118,9 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
         if (ValidMove(cell)) {
             Point pointClicked = GetPlayerClickPoint(cell);
-            gameBoard.placeMark(pointClicked, mark);
-            cell.setText(cellStateHelper.CellStateToString(mark));
-            EndOfTurn(mark);
+            gameBoard.placeMark(pointClicked, playerMark);
+            cell.setText(cellStateHelper.CellStateToString(playerMark));
+            EndOfTurn(playerMark);
         }
     }
 
@@ -162,28 +167,35 @@ public class SingleGameActivity extends MyFullScreenActivity {
         }
     }
 
-    private boolean checkEnd(CellState player) {
+    private boolean checkEnd(CellState playerMark) {
         if (gameBoard.isWinner()) {
             logger.i("SingleGameActivity", "Winner");
-            announce(true, player.toString());
+            announce(true, playerMark);
             return true;
         } else if (moveCount >= 9) {
             logger.i("SingleGameActivity", "Draw");
-            announce(false, player.toString());
+            announce(false, playerMark);
             return true;
         }
         return false;
     }
 
-    private void announce(boolean endState, String player) {
-        if (endState) {
-            player = player + " wins!";
+    private void announce(boolean endState, CellState playerMark) {
+        sharedPreferencesHelper.IncreaseWins(getApplicationContext());
+
+        String message;
+        if (endState && this.playerMark == playerMark) {
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            String player = sharedPref.getString(SettingsActivity.MyPreferencesFragment.PREF_NAME_KEY, "Player 1");
+            message = player + " wins!";
+        } else if (endState && playerMark == aiMark) {
+            message = "The Almighty computer wins!";
         } else {
-            player = "It's a draw!";
+            message = "It's a draw!";
         }
 
         Context context = getApplicationContext();
-        Toast toast = Toast.makeText(context, player, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
         toast.show();
     }
 

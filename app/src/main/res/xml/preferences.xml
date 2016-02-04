@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/preference_player_settings">
+        <!--
+                <Preference android:summary="@string/preference_player_settings_summary" />
+        -->
+
+        <EditTextPreference
+            android:defaultValue="@string/preference_playername_Default"
+            android:dialogTitle="@string/preference_playername_DialogTxt"
+            android:enabled="true"
+            android:key="pref_name_key"
+            android:persistent="true"
+            android:summary="@string/preference_playername_Summary"
+            android:title="@string/preference_playername" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preference_statistics_settings">
+        <!--
+        <Preference android:summary="@string/preference_statistics_settings_summary" />
+-->
+        <EditTextPreference
+            android:defaultValue="0"
+            android:enabled="false"
+            android:key="pref_gameswon_key"
+            android:persistent="true"
+            android:title="@string/preference_gameswon" />
+        <EditTextPreference
+            android:defaultValue="0"
+            android:enabled="false"
+            android:key="pref_gameslost_key"
+            android:persistent="true"
+            android:title="@string/preference_gameslost" />
+        <EditTextPreference
+            android:defaultValue="0"
+            android:enabled="false"
+            android:key="pref_gamesdrawn_key"
+            android:persistent="true"
+            android:title="@string/preference_gamesdrawn" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

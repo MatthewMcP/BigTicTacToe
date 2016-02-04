@@ -1,20 +1,43 @@
 <resources>
     <string name="app_name">BigTicTacToe</string>
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
 
+    <!--Home-->
     <string name="title_activity_home">HomeActivity</string>
     <string name="home_playBtnTxt">PLAY!</string>
     <string name="home_settingsBtnTxt">SETTINGS</string>
+    <string name="home_aboutBtnTxt">ABOUT</string>
 
-
+    <!--Game-->
     <string name="title_activity_single_game">SingleGameActivity</string>
     <string name="XConst" translatable="false">X</string>
     <string name="OConst" translatable="false">O</string>
     <string name="ResetBoard">Reset</string>
 
-
+    <!--Settings-->
     <string name="title_activity_settings">SettingsActivity</string>
-    <string name="settings_homeBtnTxt">HOME</string>
+
+    <!--About-->
+    <string name="title_activity_about">AboutActivity</string>
+
+    <!--Shared-->
+    <string name="shared_homeBtnTxt">HOME</string>
+
+
+    <!--PlayerPreferences-->
+    <string name="preference_player_settings">Players Preferences</string>
+    <string name="preference_player_settings_summary">Players Preferences may be edited, just click!</string>
+    <string name="preference_playername">Players Name</string>
+    <string name="preference_playername_Default">Player 1</string>
+    <string name="preference_playername_DialogTxt">Please enter players new name</string>
+    <string name="preference_playername_Summary">Players preferred name</string>
+
+    <!--StatisticPreferences-->
+    <string name="preference_statistics_settings">Statistics</string>
+    <string name="preference_statistics_settings_summary">Statistics may not be edited, only reset</string>
+    <string name="preference_gameswon">Games won</string>
+    <string name="preference_gameslost">Games lost</string>
+    <string name="preference_gamesdrawn">Games drawn</string>
+
+
 </resources>

@@ -45,4 +45,12 @@ public class HomeActivity extends MyFullScreenActivity {
         Intent intent = new Intent(context, SettingsActivity.class);
         startActivity(intent);
     }
+
+    @OnClick(value = R.id.home_about_btn)
+    public void aboutBtnClick() {
+        logger.i("HomeActivity", "About Button clicked, loading AboutActivity...");
+        final Context context = this;
+        Intent intent = new Intent(context, AboutActivity.class);
+        startActivity(intent);
+    }
 }

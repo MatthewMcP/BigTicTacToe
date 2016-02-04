@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Background"
-    tools:context=".SettingsActivity">
+    tools:context="com.dev.mcp.matthew.bigtictactoe.Activities.AboutActivity">
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
@@ -17,12 +14,11 @@
 
 
         <Button
-            android:id="@+id/settings_home_btn"
+            android:id="@+id/about_home_btn"
             android:layout_width="198dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
+            android:layout_gravity="center"
             android:text="@string/shared_homeBtnTxt" />
-
-
     </FrameLayout>
+
 </FrameLayout>
