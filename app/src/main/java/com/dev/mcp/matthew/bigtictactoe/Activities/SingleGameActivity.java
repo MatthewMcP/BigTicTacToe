@@ -19,6 +19,7 @@ import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.CellStateHelper;
+import com.dev.mcp.matthew.bigtictactoe.Helpers.PreferenceNames;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.SharedPreferencesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.ILogger;
@@ -181,17 +182,19 @@ public class SingleGameActivity extends MyFullScreenActivity {
     }
 
     private void announce(boolean endState, CellState playerMark) {
-        sharedPreferencesHelper.IncreaseWins(getApplicationContext());
 
         String message;
         if (endState && this.playerMark == playerMark) {
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            String player = sharedPref.getString(SettingsActivity.MyPreferencesFragment.PREF_NAME_KEY, "Player 1");
+            String player = sharedPref.getString(PreferenceNames.NamePreference(), "Player 1");
             message = player + " wins!";
+            sharedPreferencesHelper.IncreaseWins(getApplicationContext());
         } else if (endState && playerMark == aiMark) {
             message = "The Almighty computer wins!";
+            sharedPreferencesHelper.IncreaseLosses(getApplicationContext());
         } else {
             message = "It's a draw!";
+            sharedPreferencesHelper.IncreaseDraws(getApplicationContext());
         }
 
         Context context = getApplicationContext();

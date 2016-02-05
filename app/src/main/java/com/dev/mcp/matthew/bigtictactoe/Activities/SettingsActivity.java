@@ -8,10 +8,12 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceGroup;
+import android.view.View;
 
 import com.dev.mcp.matthew.bigtictactoe.Components.DaggerILoggerComponent;
 import com.dev.mcp.matthew.bigtictactoe.Components.ILoggerComponent;
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
+import com.dev.mcp.matthew.bigtictactoe.Helpers.PreferenceNames;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.ILogger;
 import com.dev.mcp.matthew.bigtictactoe.Modules.ILoggerModule;
 import com.dev.mcp.matthew.bigtictactoe.R;
@@ -33,7 +35,7 @@ public class SettingsActivity extends MyFullScreenActivity {
         logComponent = DaggerILoggerComponent.builder().iLoggerModule(new ILoggerModule()).build();
         logger = logComponent.provideILogger();
 
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferencesFragment()).commit();
+       // getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferencesFragment()).commit();
 
 
         logger.i("SettingsActivity", "Loaded Successfully");
@@ -47,11 +49,7 @@ public class SettingsActivity extends MyFullScreenActivity {
         startActivity(intent);
     }
 
-    public static class MyPreferencesFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
-
-        public static final String PREF_NAME_KEY = "pref_name_key";
-        public static final String PREF_NAME_KEY2 = "games_won_key";
-
+    public static class MyPreferencesFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener {
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -79,7 +77,7 @@ public class SettingsActivity extends MyFullScreenActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            updatePreference(findPreference(PREF_NAME_KEY), key);
+            updatePreference(findPreference(PreferenceNames.NamePreference()), key);
         }
 
         private void updatePreference(Preference preference, String key) {
@@ -93,6 +91,16 @@ public class SettingsActivity extends MyFullScreenActivity {
             SharedPreferences sharedPrefs = getPreferenceManager().getSharedPreferences();
 
             preference.setSummary(sharedPrefs.getString(key, "Default"));
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.settings_home_btn:
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+                    break;
+            }
         }
     }
 }

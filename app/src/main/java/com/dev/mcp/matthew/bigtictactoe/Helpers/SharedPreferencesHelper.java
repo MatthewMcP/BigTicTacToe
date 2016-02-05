@@ -7,11 +7,25 @@ import android.preference.PreferenceManager;
 public class SharedPreferencesHelper {
 
     public static void IncreaseWins(Context context) {
+        IncreasePreferenceByOne(PreferenceNames.WinsPreference(), context);
+    }
+
+    public static void IncreaseLosses(Context context) {
+        IncreasePreferenceByOne(PreferenceNames.LosesPreference(), context);
+    }
+
+    public static void IncreaseDraws(Context context) {
+        IncreasePreferenceByOne(PreferenceNames.DrawsPreference(), context);
+    }
+
+    private static void IncreasePreferenceByOne(String preferenceName, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        int currentWins = Integer.parseInt(preferences.getString("pref_gameswon_key", "0"));
+
+        int currentValue = Integer.parseInt(preferences.getString(preferenceName, "0"));
+        int newValue = currentValue + 1;
+
         SharedPreferences.Editor editor = preferences.edit();
-        int newWins = currentWins + 1;
-        editor.putString("pref_gameswon_key", Integer.toString(newWins));
+        editor.putString(preferenceName, Integer.toString(newValue));
         editor.commit();
     }
 }
