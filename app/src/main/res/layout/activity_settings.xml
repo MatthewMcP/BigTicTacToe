@@ -15,6 +15,12 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
+        <fragment
+            android:id="@+id/list"
+            android:name="com.dev.mcp.matthew.bigtictactoe.Activities.MyPreferencesFragment"
+            android:layout_width="match_parent"
+            android:layout_height="800px"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/settings_home_btn"
