@@ -19,6 +19,7 @@ import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.CellStateHelper;
+import com.dev.mcp.matthew.bigtictactoe.Helpers.MessagesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.PreferenceNames;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.SharedPreferencesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
@@ -190,7 +191,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
             message = player + " wins!";
             sharedPreferencesHelper.IncreaseWins(getApplicationContext());
         } else if (endState && playerMark == aiMark) {
-            message = "The Almighty computer wins!";
+            message = MessagesHelper.GetRandomComputerWinsMessage();
             sharedPreferencesHelper.IncreaseLosses(getApplicationContext());
         } else {
             message = "It's a draw!";
@@ -198,7 +199,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
         }
 
         Context context = getApplicationContext();
-        Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
         toast.show();
     }
 

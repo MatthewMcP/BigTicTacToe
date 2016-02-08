@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.dev.mcp.matthew.bigtictactoe.R;
+
 public class SharedPreferencesHelper {
 
     public static void IncreaseWins(Context context) {
@@ -27,5 +29,10 @@ public class SharedPreferencesHelper {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(preferenceName, Integer.toString(newValue));
         editor.commit();
+    }
+
+    public static void ResetStatistics(Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
+        PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
     }
 }

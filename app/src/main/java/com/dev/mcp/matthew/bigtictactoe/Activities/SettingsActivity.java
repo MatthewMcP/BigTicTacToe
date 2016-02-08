@@ -28,14 +28,13 @@ public class SettingsActivity extends MyFullScreenActivity {
         logComponent = DaggerILoggerComponent.builder().iLoggerModule(new ILoggerModule()).build();
         logger = logComponent.provideILogger();
 
-//        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferencesFragment()).commit();
-
-
         logger.i("SettingsActivity", "Loaded Successfully");
+        String trhisd = getString(R.string.preference_playername_Key);
+
     }
 
     @OnClick(value = R.id.settings_home_btn)
-    public void settingsBtnListener() {
+    public void settingsHomeBtnListener() {
         logger.i("HomeActivity", "Settings Button clicked, loading HomeActivity...");
         final Context context = this;
         Intent intent = new Intent(context, HomeActivity.class);

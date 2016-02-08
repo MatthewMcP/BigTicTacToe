@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">BigTicTacToe</string>
 
-
     <!--Home-->
     <string name="title_activity_home">HomeActivity</string>
     <string name="home_playBtnTxt">PLAY!</string>
@@ -16,6 +15,7 @@
 
     <!--Settings-->
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="settings_resetStatisticsBtnTxt">Reset Statistics</string>
 
     <!--About-->
     <string name="title_activity_about">AboutActivity</string>
@@ -23,21 +23,37 @@
     <!--Shared-->
     <string name="shared_homeBtnTxt">HOME</string>
 
-
     <!--PlayerPreferences-->
     <string name="preference_player_settings">Players Preferences</string>
     <string name="preference_player_settings_summary">Players Preferences may be edited, just click!</string>
     <string name="preference_playername">Players Name</string>
     <string name="preference_playername_Default">Player 1</string>
     <string name="preference_playername_DialogTxt">Please enter players new name</string>
+    <string name="preference_playername_Key">pref_name_key</string>
     <string name="preference_playername_Summary">Players preferred name</string>
 
     <!--StatisticPreferences-->
     <string name="preference_statistics_settings">Statistics</string>
     <string name="preference_statistics_settings_summary">Statistics may not be edited, only reset</string>
     <string name="preference_gameswon">Games won</string>
+    <string name="preference_gameswon_key">pref_gameswon_key</string>
+
     <string name="preference_gameslost">Games lost</string>
+    <string name="preference_gameslost_key">pref_gameslost_key</string>
+
     <string name="preference_gamesdrawn">Games drawn</string>
+    <string name="preference_gamesdrawn_key">pref_gamesdrawn_key</string>
 
 
+    <string-array name="message_computerwins_array">
+        <item>The Almighty %1$s wins!</item>
+        <item>The Undefeatable %1$s wins!</item>
+        <item>...Where you even trying to win?</item>
+        <item>Surely THAT was a misclick?</item>
+        <item>%1$s is getting bored of your bad play...</item>
+        <item>The best player won</item>
+        <item>Beep boop beep</item>
+        <item>EXTERMINATE</item>
+        <item>Aww, I am sure you will do better next time</item>
+    </string-array>
 </resources>

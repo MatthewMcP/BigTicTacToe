@@ -10,7 +10,7 @@
             android:defaultValue="@string/preference_playername_Default"
             android:dialogTitle="@string/preference_playername_DialogTxt"
             android:enabled="true"
-            android:key="pref_name_key"
+            android:key="@string/preference_playername_Key"
             android:persistent="true"
             android:summary="@string/preference_playername_Summary"
             android:title="@string/preference_playername" />
@@ -23,19 +23,19 @@
         <EditTextPreference
             android:defaultValue="0"
             android:enabled="false"
-            android:key="pref_gameswon_key"
+            android:key="@string/preference_gameswon_key"
             android:persistent="true"
             android:title="@string/preference_gameswon" />
         <EditTextPreference
             android:defaultValue="0"
             android:enabled="false"
-            android:key="pref_gameslost_key"
+            android:key="@string/preference_gameslost_key"
             android:persistent="true"
             android:title="@string/preference_gameslost" />
         <EditTextPreference
             android:defaultValue="0"
             android:enabled="false"
-            android:key="pref_gamesdrawn_key"
+            android:key="@string/preference_gamesdrawn_key"
             android:persistent="true"
             android:title="@string/preference_gamesdrawn" />
     </PreferenceCategory>

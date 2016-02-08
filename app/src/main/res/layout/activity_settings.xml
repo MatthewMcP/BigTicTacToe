@@ -23,10 +23,17 @@
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/settings_resetStatistics_btn"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|bottom"
+            android:text="@string/settings_resetStatisticsBtnTxt" />
+
+        <Button
             android:id="@+id/settings_home_btn"
             android:layout_width="198dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
+            android:layout_gravity="right|bottom"
             android:text="@string/shared_homeBtnTxt" />
 
 
