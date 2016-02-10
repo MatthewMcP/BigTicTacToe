@@ -19,6 +19,13 @@
 
     <!--About-->
     <string name="title_activity_about">AboutActivity</string>
+    <string name="about_txt">
+        This was designed as a learning experience, any suggestions please send them to Hilary Clinton via email and I will see them.
+        \n\n\nCode is on github and the license will be here once I learn about what the entails.
+        \n\n\nHi Claire
+        \n\n\nBest Regards,
+        \nM
+        </string>
 
     <!--Shared-->
     <string name="shared_homeBtnTxt">HOME</string>

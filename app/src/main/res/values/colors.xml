@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="Background">#3F51B5</color>
-    <color name="BackgroundDark">#253069</color>
-    <color name="BackgroundLight">#536aed</color>
+    <color name="Background">#717278</color>
+    <color name="BackgroundDark">#484849</color>
+    <color name="BackgroundLight">#b7b8be</color>
 
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#1be680</color>
+    <color name="colorPrimaryDark">#18be6a</color>
+    <color name="colorPrimaryLight">#21ff8f</color>
 
     <color name="CellBackGround">#96113c6e</color>
     <color name="CellBorder">#00fcc1</color>
     <color name="CellTextColor">#0aef44</color>
 
+    <color name="White">#ffffff</color>
 
-    <color name="TextColor1">#1202f2</color>
+    <color name="TextColor1">#ffffff</color>
+    <color name="TextColor2">#1202f2</color>
 
     <color name="black_overlay">#66000000</color>
 
