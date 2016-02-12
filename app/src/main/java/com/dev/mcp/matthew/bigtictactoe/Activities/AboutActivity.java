@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
-import com.dev.mcp.matthew.bigtictactoe.Interfaces.ILogger;
 import com.dev.mcp.matthew.bigtictactoe.R;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AboutActivity extends MyFullScreenActivity {
@@ -15,6 +15,7 @@ public class AboutActivity extends MyFullScreenActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        ButterKnife.bind(this);
     }
 
     @OnClick(value = R.id.about_home_btn)

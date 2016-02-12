@@ -7,6 +7,12 @@
     <string name="home_settingsBtnTxt">SETTINGS</string>
     <string name="home_aboutBtnTxt">ABOUT</string>
 
+    <!--Difficulty-->
+    <string name="difficulty_easyAI_Btn">Dumb Dora</string>
+    <string name="difficulty_mediumAI_Btn">Average Alex</string>
+    <string name="difficulty_hardAI_Btn">Mighty Marvin</string>
+    <string name="difficulty_randomAI_Btn">Roger</string>
+
     <!--Game-->
     <string name="title_activity_single_game">SingleGameActivity</string>
     <string name="XConst" translatable="false">X</string>
@@ -41,7 +47,7 @@
 
     <!--StatisticPreferences-->
     <string name="preference_statistics_settings">Statistics</string>
-    <string name="preference_statistics_settings_summary">Statistics may not be edited, only reset</string>
+    <string name="preference_statistics_settings_summary">The below statistics may not be edited.</string>
     <string name="preference_gameswon">Games won</string>
     <string name="preference_gameswon_key">pref_gameswon_key</string>
 
@@ -63,4 +69,8 @@
         <item>EXTERMINATE</item>
         <item>Aww, I am sure you will do better next time</item>
     </string-array>
+
+    <string name="title_activity_choose_difficulty">ChooseDifficultyActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

@@ -2,9 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="@string/preference_player_settings">
-        <!--
                 <Preference android:summary="@string/preference_player_settings_summary" />
-        -->
 
         <EditTextPreference
             android:defaultValue="@string/preference_playername_Default"
@@ -16,27 +14,31 @@
             android:title="@string/preference_playername" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/preference_statistics_settings">
-        <!--
+    <PreferenceCategory
+        android:title="@string/preference_statistics_settings">
+
         <Preference android:summary="@string/preference_statistics_settings_summary" />
--->
+
         <EditTextPreference
             android:defaultValue="0"
             android:enabled="false"
             android:key="@string/preference_gameswon_key"
             android:persistent="true"
+            android:textColor="@color/White"
             android:title="@string/preference_gameswon" />
         <EditTextPreference
             android:defaultValue="0"
             android:enabled="false"
             android:key="@string/preference_gameslost_key"
             android:persistent="true"
+            android:textColor="@color/White"
             android:title="@string/preference_gameslost" />
         <EditTextPreference
             android:defaultValue="0"
             android:enabled="false"
             android:key="@string/preference_gamesdrawn_key"
             android:persistent="true"
+            android:textColor="@color/White"
             android:title="@string/preference_gamesdrawn" />
     </PreferenceCategory>
 

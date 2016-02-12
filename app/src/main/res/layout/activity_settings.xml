@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Background"
+    android:orientation="vertical"
     tools:context=".SettingsActivity">
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="8"
+        android:gravity="center">
 
         <fragment
             android:id="@+id/list"
@@ -21,21 +20,33 @@
             android:layout_width="match_parent"
             android:layout_height="800px"
             android:layout_weight="1" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/settings_resetStatistics_btn"
-            android:layout_width="198dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left|bottom"
-            android:text="@string/settings_resetStatisticsBtnTxt" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <!--        <Button
+                    android:id="@+id/settings_resetStatistics_btn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|bottom"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rounded_button"
+                    android:text="@string/settings_resetStatisticsBtnTxt"
+                    android:textColor="@color/White" />-->
 
         <Button
             android:id="@+id/settings_home_btn"
             android:layout_width="198dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
-            android:text="@string/shared_homeBtnTxt" />
+            android:background="@drawable/rounded_button"
+            android:text="@string/shared_homeBtnTxt"
+            android:textColor="@color/TextColor1" />
+    </LinearLayout>
 
-
-    </FrameLayout>
-</FrameLayout>
+</LinearLayout>

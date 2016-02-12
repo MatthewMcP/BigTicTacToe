@@ -29,8 +29,6 @@ public class SettingsActivity extends MyFullScreenActivity {
         logger = logComponent.provideILogger();
 
         logger.i("SettingsActivity", "Loaded Successfully");
-        String trhisd = getString(R.string.preference_playername_Key);
-
     }
 
     @OnClick(value = R.id.settings_home_btn)

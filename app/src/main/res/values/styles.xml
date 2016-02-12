@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/Background</item>
         <item name="colorPrimaryDark">@color/BackgroundDark</item>
         <item name="colorAccent">@color/BackgroundLight</item>
+        <item name="android:textColor">@color/TextColor1</item>
     </style>
 
     <style name="FullscreenTheme" parent="AppTheme">
@@ -28,5 +29,4 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
 </resources>

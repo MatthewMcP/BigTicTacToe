@@ -30,18 +30,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="bottom"
+        android:layout_margin="5dp"
         android:layout_weight="1"
         android:gravity="center">
 
         <Button
             android:id="@+id/about_home_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="198dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
             android:background="@drawable/rounded_button"
             android:text="@string/shared_homeBtnTxt"
-            android:textColor="@color/White" />
+            android:textColor="@color/TextColor1" />
     </LinearLayout>
 
 

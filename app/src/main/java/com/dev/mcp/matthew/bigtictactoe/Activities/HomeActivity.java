@@ -32,9 +32,9 @@ public class HomeActivity extends MyFullScreenActivity {
 
     @OnClick(value = R.id.home_play_btn)
     public void playBtnClick() {
-        logger.i("HomeActivity", "Play Button clicked, loading SingleGameActivity...");
+        logger.i("HomeActivity", "Play Button clicked, loading ChooseDifficultyActivity...");
         final Context context = this;
-        Intent intent = new Intent(context, SingleGameActivity.class);
+        Intent intent = new Intent(context, ChooseDifficultyActivity.class);
         startActivity(intent);
     }
 
