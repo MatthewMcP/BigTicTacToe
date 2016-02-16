@@ -1,10 +1,8 @@
 package com.dev.mcp.matthew.bigtictactoe.Activities;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +18,6 @@ import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.CellStateHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.MessagesHelper;
-import com.dev.mcp.matthew.bigtictactoe.Helpers.PreferenceNames;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.SharedPreferencesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.ILogger;
@@ -70,7 +67,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
         computerPlayerComponentComponent = DaggerIComputerPlayerComponent.builder().iComputerPlayerModule(new IComputerPlayerModule()).build();
         computerPlayer = computerPlayerComponentComponent.provideComputerPlayer();
 
-        cellStateHelper = new CellStateHelper(this);
+        cellStateHelper = new CellStateHelper();
         sharedPreferencesHelper = new SharedPreferencesHelper();
         logger.i("SingleGameActivity", "Loaded Successfully");
     }
@@ -87,7 +84,6 @@ public class SingleGameActivity extends MyFullScreenActivity {
     private void clear() {
         logger.i("SingleGameActivity", "Clearing the board");
 
-        sharedPreferencesHelper.IncreaseWins(getApplicationContext());
         for (int item : idList) {
             TextView cell = (TextView) findViewById(item);
             cell.setText("");
@@ -126,6 +122,17 @@ public class SingleGameActivity extends MyFullScreenActivity {
         }
     }
 
+    private boolean ValidMove(TextView cell) {
+        String content = (String) cell.getText();
+        CellState current = cellStateHelper.StringToCellState(content);
+
+        if (current == CellState.Empty && !isOver) {
+            return true;
+        }
+
+        return false;
+    }
+
     private Point GetPlayerClickPoint(TextView cell) {
         switch (cell.getId()) {
             case R.id.cell11:
@@ -147,17 +154,6 @@ public class SingleGameActivity extends MyFullScreenActivity {
             default:
                 return new Point(2, 2);
         }
-    }
-
-    private boolean ValidMove(TextView cell) {
-        String content = (String) cell.getText();
-        CellState current = cellStateHelper.StringToCellState(content);
-
-        if (current == CellState.Empty && !isOver) {
-            return true;
-        }
-
-        return false;
     }
 
     private void EndOfTurn(CellState mark) {
@@ -186,12 +182,10 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
         String message;
         if (endState && this.playerMark == playerMark) {
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            String player = sharedPref.getString(PreferenceNames.NamePreference(), "Player 1");
-            message = player + " wins!";
+            message = sharedPreferencesHelper.GetPlayerName(getApplicationContext());
             sharedPreferencesHelper.IncreaseWins(getApplicationContext());
         } else if (endState && playerMark == aiMark) {
-            message = MessagesHelper.GetRandomComputerWinsMessage();
+            message = MessagesHelper.GetComputerWinsMessage(computerPlayer.getName(), computerPlayer.getPlayerType());
             sharedPreferencesHelper.IncreaseLosses(getApplicationContext());
         } else {
             message = "It's a draw!";

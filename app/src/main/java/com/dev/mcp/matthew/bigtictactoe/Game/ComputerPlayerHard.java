@@ -4,16 +4,19 @@ import android.graphics.Point;
 
 import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
+import com.dev.mcp.matthew.bigtictactoe.Enums.ComputerPlayerType;
+import com.dev.mcp.matthew.bigtictactoe.Helpers.App;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
+import com.dev.mcp.matthew.bigtictactoe.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComputerPlayer implements IComputerPlayer {
+public class ComputerPlayerHard implements IComputerPlayer {
     protected CellState myMark;
     protected CellState[][] board;
 
-    public ComputerPlayer(CellState marker) {
+    public ComputerPlayerHard(CellState marker) {
         myMark = marker;
     }
 
@@ -22,6 +25,15 @@ public class ComputerPlayer implements IComputerPlayer {
         int[] result = minmax(2, myMark, Integer.MIN_VALUE, Integer.MAX_VALUE);
 
         return new Point(result[1], result[2]);
+    }
+
+    public ComputerPlayerType getPlayerType() {
+        return ComputerPlayerType.Hard;
+    }
+
+    @Override
+    public String getName() {
+        return App.getContext().getResources().getString(R.string.XConst);
     }
 
 

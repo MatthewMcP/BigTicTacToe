@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button"
             android:text="@string/difficulty_easyAI_Btn"
-            android:textColor="@color/TextColor1" />
+            android:textColor="@color/easyColor" />
     </LinearLayout>
 
     <LinearLayout
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button"
             android:text="@string/difficulty_mediumAI_Btn"
-            android:textColor="@color/TextColor1" />
+            android:textColor="@color/mediumColor" />
     </LinearLayout>
 
     <LinearLayout
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button"
             android:text="@string/difficulty_hardAI_Btn"
-            android:textColor="@color/TextColor1" />
+            android:textColor="@color/hardColor" />
     </LinearLayout>
 
     <LinearLayout
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button"
             android:text="@string/difficulty_randomAI_Btn"
-            android:textColor="@color/TextColor1" />
+            android:textColor="@color/randomColor" />
     </LinearLayout>
 
     <LinearLayout

@@ -10,7 +10,8 @@ public class CellStateHelper {
     private String XConstString;
     private String OConstString;
 
-    public CellStateHelper(Context context) {
+    public CellStateHelper() {
+        Context context = App.getContext();
         XConstString = context.getResources().getString(R.string.XConst);
         OConstString = context.getResources().getString(R.string.OConst);
     }

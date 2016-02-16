@@ -8,6 +8,12 @@ import com.dev.mcp.matthew.bigtictactoe.R;
 
 public class SharedPreferencesHelper {
 
+    public static String GetPlayerName(Context context) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String player = sharedPref.getString(PreferenceNames.NamePreference(), "Player 1");
+        return player;
+    }
+
     public static void IncreaseWins(Context context) {
         IncreasePreferenceByOne(PreferenceNames.WinsPreference(), context);
     }

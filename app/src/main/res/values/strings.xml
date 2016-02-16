@@ -8,6 +8,7 @@
     <string name="home_aboutBtnTxt">ABOUT</string>
 
     <!--Difficulty-->
+    <string name="title_activity_choose_difficulty">ChooseDifficultyActivity</string>
     <string name="difficulty_easyAI_Btn">Dumb Dora</string>
     <string name="difficulty_mediumAI_Btn">Average Alex</string>
     <string name="difficulty_hardAI_Btn">Mighty Marvin</string>
@@ -50,27 +51,41 @@
     <string name="preference_statistics_settings_summary">The below statistics may not be edited.</string>
     <string name="preference_gameswon">Games won</string>
     <string name="preference_gameswon_key">pref_gameswon_key</string>
-
     <string name="preference_gameslost">Games lost</string>
     <string name="preference_gameslost_key">pref_gameslost_key</string>
-
     <string name="preference_gamesdrawn">Games drawn</string>
     <string name="preference_gamesdrawn_key">pref_gamesdrawn_key</string>
 
+    <!--ComputerNames-->
+    <string name="computername_easy">Dora</string>
+    <string name="computername_mediun">Alex</string>
+    <string name="computername_hard">Marvin</string>
+    <string name="computername_random">Roger</string>
 
-    <string-array name="message_computerwins_array">
-        <item>The Almighty %1$s wins!</item>
-        <item>The Undefeatable %1$s wins!</item>
+    <!--EasyWinMessages-->
+    <string-array name="message_computerwins_easy_array">
         <item>...Where you even trying to win?</item>
         <item>Surely THAT was a misclick?</item>
-        <item>%1$s is getting bored of your bad play...</item>
-        <item>The best player won</item>
-        <item>Beep boop beep</item>
-        <item>EXTERMINATE</item>
         <item>Aww, I am sure you will do better next time</item>
     </string-array>
+    <!--MediumWinMessages-->
+    <string-array name="message_computerwins_medium_array">
+        <item>...Where you even trying to win?</item>
+        <item>%1$s is getting bored of your bad play...</item>
+        <item>The best player won</item>
+    </string-array>
+    <!--HardWinMessages-->
+    <string-array name="message_computerwins_hard_array">
+        <item>The Almighty %1$s wins!</item>
+        <item>The Undefeatable %1$s wins!</item>
+        <item>The best player won</item>
+        <item>EXTERMINATE</item>
+    </string-array>
+    <!--RandomWinMessages-->
+    <string-array name="message_computerwins_random_array">
+        <item>Help me Obi-Wan Kenobi</item>
+        <item>Beep boop beep</item>
+        <item>EXTERMINATE</item>
+    </string-array>
 
-    <string name="title_activity_choose_difficulty">ChooseDifficultyActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

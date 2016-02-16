@@ -19,4 +19,10 @@
 
     <color name="black_overlay">#66000000</color>
 
+
+    <color name="easyColor">#66e9f505</color>
+    <color name="mediumColor">#f1e79b4e</color>
+    <color name="hardColor">#e3ff0008</color>
+    <color name="randomColor">#fd00fd</color>
+
 </resources>
