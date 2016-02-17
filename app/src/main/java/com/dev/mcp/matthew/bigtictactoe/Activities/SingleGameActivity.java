@@ -86,6 +86,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
         for (int item : idList) {
             TextView cell = (TextView) findViewById(item);
+            cell.setBackgroundResource(R.drawable.cell);
             cell.setText("");
         }
 
@@ -112,6 +113,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
     }
 
     public void cellClick(View v) {
+
         TextView cell = (TextView) findViewById(v.getId());
 
         if (ValidMove(cell)) {
@@ -206,8 +208,12 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
         if (cell != null && cell.getText().equals("")) {
             board.placeMark(move, aiMark);
-            String cellStateString = cellStateHelper.CellStateToString(aiMark);
-            cell.setText(cellStateString);
+            if (aiMark == CellState.XMark) {
+                cell.setBackgroundResource(R.drawable.cross_button);
+            } else {
+                cell.setBackgroundResource(R.drawable.round_button);
+            }
+
             EndOfTurn(aiMark);
         }
     }
@@ -244,5 +250,9 @@ public class SingleGameActivity extends MyFullScreenActivity {
                 }
         }
         return null;
+    }
+
+    public void updateboard() {
+
     }
 }
