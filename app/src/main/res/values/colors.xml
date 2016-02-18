@@ -19,6 +19,8 @@
 
     <color name="black_overlay">#66000000</color>
 
+    <color name="playerColor">#1be680</color>
+    <color name="playerColorLight">#21ff8f</color>
 
     <color name="easyColor">#66e9f505</color>
     <color name="mediumColor">#f1e79b4e</color>

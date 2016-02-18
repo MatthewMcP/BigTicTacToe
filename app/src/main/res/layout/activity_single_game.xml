@@ -124,9 +124,8 @@
 
             <TextView
                 android:id="@+id/cell31"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
@@ -138,9 +137,8 @@
 
             <TextView
                 android:id="@+id/cell32"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
@@ -152,9 +150,8 @@
 
             <TextView
                 android:id="@+id/cell33"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 android:background="@drawable/cell"
                 android:clickable="true"
                 android:gravity="center"
@@ -170,7 +167,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="#4d4d4d"
         android:orientation="horizontal">
 

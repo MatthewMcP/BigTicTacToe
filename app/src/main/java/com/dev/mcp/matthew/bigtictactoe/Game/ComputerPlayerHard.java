@@ -32,6 +32,14 @@ public class ComputerPlayerHard implements IComputerPlayer {
     }
 
     @Override
+    public int getComputerMark(CellState mark) {
+        if (mark == CellState.XMark) {
+            return R.drawable.cross_ai_hard;
+        }
+        return R.drawable.circle_ai_hard;
+    }
+
+    @Override
     public String getName() {
         return App.getContext().getResources().getString(R.string.XConst);
     }

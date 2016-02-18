@@ -119,7 +119,8 @@ public class SingleGameActivity extends MyFullScreenActivity {
         if (ValidMove(cell)) {
             Point pointClicked = GetPlayerClickPoint(cell);
             gameBoard.placeMark(pointClicked, playerMark);
-            cell.setText(cellStateHelper.CellStateToString(playerMark));
+            int playerDrawableId = getPlayerDrawable();
+            cell.setBackgroundResource(playerDrawableId);
             EndOfTurn(playerMark);
         }
     }
@@ -158,6 +159,13 @@ public class SingleGameActivity extends MyFullScreenActivity {
         }
     }
 
+    private int getPlayerDrawable() {
+        if (playerMark == CellState.XMark) {
+            return R.drawable.cross_player;
+        }
+        return R.drawable.circle_player;
+    }
+
     private void EndOfTurn(CellState mark) {
         moveCount++;
         isOver = checkEnd(mark);
@@ -170,17 +178,17 @@ public class SingleGameActivity extends MyFullScreenActivity {
     private boolean checkEnd(CellState playerMark) {
         if (gameBoard.isWinner()) {
             logger.i("SingleGameActivity", "Winner");
-            announce(true, playerMark);
+            announceAndUpdateStats(true, playerMark);
             return true;
         } else if (moveCount >= 9) {
             logger.i("SingleGameActivity", "Draw");
-            announce(false, playerMark);
+            announceAndUpdateStats(false, playerMark);
             return true;
         }
         return false;
     }
 
-    private void announce(boolean endState, CellState playerMark) {
+    private void announceAndUpdateStats(boolean endState, CellState playerMark) {
 
         String message;
         if (endState && this.playerMark == playerMark) {
@@ -209,9 +217,9 @@ public class SingleGameActivity extends MyFullScreenActivity {
         if (cell != null && cell.getText().equals("")) {
             board.placeMark(move, aiMark);
             if (aiMark == CellState.XMark) {
-                cell.setBackgroundResource(R.drawable.cross_button);
+                cell.setBackgroundResource(R.drawable.cross_player);
             } else {
-                cell.setBackgroundResource(R.drawable.round_button);
+                cell.setBackgroundResource(R.drawable.circle_player);
             }
 
             EndOfTurn(aiMark);
