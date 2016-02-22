@@ -41,9 +41,8 @@ public class ComputerPlayerHard implements IComputerPlayer {
 
     @Override
     public String getName() {
-        return App.getContext().getResources().getString(R.string.XConst);
+        return App.getContext().getResources().getString(R.string.computername_hard);
     }
-
 
     //This could probably be improved but I'm not interested in fixing a complex AI.
     //Leaving untouched for now. One day...

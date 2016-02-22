@@ -4,29 +4,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.dev.mcp.matthew.bigtictactoe.Components.DaggerILoggerComponent;
-import com.dev.mcp.matthew.bigtictactoe.Components.ILoggerComponent;
+import com.dev.mcp.matthew.bigtictactoe.Core.Logger;
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
-import com.dev.mcp.matthew.bigtictactoe.Interfaces.ILogger;
-import com.dev.mcp.matthew.bigtictactoe.Modules.ILoggerModule;
+import com.dev.mcp.matthew.bigtictactoe.Helpers.App;
 import com.dev.mcp.matthew.bigtictactoe.R;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HomeActivity extends MyFullScreenActivity {
 
-    ILogger logger;
+    @Inject
+    Logger logger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((App) getApplication()).getMyComponent().inject(this);
+
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-        ILoggerComponent logComponent;
-        logComponent = DaggerILoggerComponent.builder().iLoggerModule(new ILoggerModule()).build();
-        logger = logComponent.provideILogger();
+
         logger.i("HomeActivity", "Loaded Successfully");
     }
 

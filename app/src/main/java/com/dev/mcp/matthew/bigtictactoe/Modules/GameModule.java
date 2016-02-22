@@ -1,16 +1,18 @@
 package com.dev.mcp.matthew.bigtictactoe.Modules;
 
 import com.dev.mcp.matthew.bigtictactoe.Game.Board;
-import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class IBoardModule {
+public class GameModule {
 
     @Provides
-    IBoard provideIboard() {
+    @Singleton
+    Board provideboard() {
         return new Board();
     }
 

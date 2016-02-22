@@ -7,35 +7,39 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dev.mcp.matthew.bigtictactoe.Components.DaggerIBoardComponent;
-import com.dev.mcp.matthew.bigtictactoe.Components.DaggerIComputerPlayerComponent;
-import com.dev.mcp.matthew.bigtictactoe.Components.DaggerILoggerComponent;
-import com.dev.mcp.matthew.bigtictactoe.Components.IBoardComponent;
-import com.dev.mcp.matthew.bigtictactoe.Components.IComputerPlayerComponent;
-import com.dev.mcp.matthew.bigtictactoe.Components.ILoggerComponent;
 import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
+import com.dev.mcp.matthew.bigtictactoe.Core.Logger;
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
+import com.dev.mcp.matthew.bigtictactoe.Game.Board;
+import com.dev.mcp.matthew.bigtictactoe.Game.ComputerPlayerHard;
+import com.dev.mcp.matthew.bigtictactoe.Helpers.App;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.CellStateHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.MessagesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.SharedPreferencesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
-import com.dev.mcp.matthew.bigtictactoe.Interfaces.ILogger;
-import com.dev.mcp.matthew.bigtictactoe.Modules.IBoardModule;
-import com.dev.mcp.matthew.bigtictactoe.Modules.IComputerPlayerModule;
-import com.dev.mcp.matthew.bigtictactoe.Modules.ILoggerModule;
 import com.dev.mcp.matthew.bigtictactoe.R;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SingleGameActivity extends MyFullScreenActivity {
 
-    ILogger logger;
-    IBoard gameBoard;
-    IComputerPlayer computerPlayer;
+    @Inject
+    Logger logger;
+
+    @Inject
     CellStateHelper cellStateHelper;
+
+    @Inject
     SharedPreferencesHelper sharedPreferencesHelper;
+
+    @Inject
+    Board gameBoard;
+    IComputerPlayer computerPlayer;
+
 
     private int moveCount = 0;
 
@@ -52,23 +56,12 @@ public class SingleGameActivity extends MyFullScreenActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_game);
         ButterKnife.bind(this);
-
-        ILoggerComponent logComponent;
-        logComponent = DaggerILoggerComponent.builder().iLoggerModule(new ILoggerModule()).build();
-        logger = logComponent.provideILogger();
+        ((App) getApplication()).getMyComponent().inject(this);
 
         logger.i("SingleGameActivity", "Loading...");
 
-        IBoardComponent boardComponent;
-        boardComponent = DaggerIBoardComponent.builder().iBoardModule(new IBoardModule()).build();
-        gameBoard = boardComponent.provideBoard();
+        computerPlayer = new ComputerPlayerHard(CellState.XMark);
 
-        IComputerPlayerComponent computerPlayerComponentComponent;
-        computerPlayerComponentComponent = DaggerIComputerPlayerComponent.builder().iComputerPlayerModule(new IComputerPlayerModule()).build();
-        computerPlayer = computerPlayerComponentComponent.provideComputerPlayer();
-
-        cellStateHelper = new CellStateHelper();
-        sharedPreferencesHelper = new SharedPreferencesHelper();
         logger.i("SingleGameActivity", "Loaded Successfully");
     }
 
