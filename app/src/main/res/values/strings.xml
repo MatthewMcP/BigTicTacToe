@@ -88,4 +88,8 @@
         <item>EXTERMINATE</item>
     </string-array>
 
+    <!--IntentKeys-->
+    <string name="computerDifficulty_Key">ComputerDifficulty</string>
+
+
 </resources>

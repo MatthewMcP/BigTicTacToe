@@ -2,6 +2,7 @@ package com.dev.mcp.matthew.bigtictactoe.Modules;
 
 import com.dev.mcp.matthew.bigtictactoe.Core.Logger;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.CellStateHelper;
+import com.dev.mcp.matthew.bigtictactoe.Helpers.ComputerPlayerHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.MessagesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.PreferenceNames;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.SharedPreferencesHelper;
@@ -35,6 +36,12 @@ public class GameHelperModule {
 
     @Provides
     @Singleton
+    ComputerPlayerHelper provideComputerPlayerHelperr() {
+        return new ComputerPlayerHelper();
+    }
+
+    @Provides
+    @Singleton
     MessagesHelper provideMessagesHelper() {
         return new MessagesHelper();
     }
@@ -50,6 +57,4 @@ public class GameHelperModule {
     SharedPreferencesHelper provideSharedPreferencesHelper() {
         return new SharedPreferencesHelper();
     }
-
-
 }

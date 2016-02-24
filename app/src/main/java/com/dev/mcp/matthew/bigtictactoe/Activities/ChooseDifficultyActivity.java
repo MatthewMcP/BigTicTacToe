@@ -5,12 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
+import com.dev.mcp.matthew.bigtictactoe.Enums.ComputerPlayerType;
 import com.dev.mcp.matthew.bigtictactoe.R;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ChooseDifficultyActivity extends MyFullScreenActivity {
+
+    private String computerDifficultyKey = getString(R.string.computerDifficulty_Key);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +27,7 @@ public class ChooseDifficultyActivity extends MyFullScreenActivity {
     public void easyAIBtnClick() {
         final Context context = this;
         Intent intent = new Intent(context, SingleGameActivity.class);
+        intent.putExtra(computerDifficultyKey, ComputerPlayerType.Easy.name());
         startActivity(intent);
     }
 
@@ -29,6 +35,7 @@ public class ChooseDifficultyActivity extends MyFullScreenActivity {
     public void mediumAIBtnClick() {
         final Context context = this;
         Intent intent = new Intent(context, SingleGameActivity.class);
+        intent.putExtra(computerDifficultyKey, ComputerPlayerType.Medium.name());
         startActivity(intent);
     }
 
@@ -36,6 +43,7 @@ public class ChooseDifficultyActivity extends MyFullScreenActivity {
     public void hardAIBtnClick() {
         final Context context = this;
         Intent intent = new Intent(context, SingleGameActivity.class);
+        intent.putExtra(computerDifficultyKey, ComputerPlayerType.Hard.name());
         startActivity(intent);
     }
 
@@ -43,6 +51,7 @@ public class ChooseDifficultyActivity extends MyFullScreenActivity {
     public void randomAIBtnClick() {
         final Context context = this;
         Intent intent = new Intent(context, SingleGameActivity.class);
+        intent.putExtra(computerDifficultyKey, ComputerPlayerType.Random.name());
         startActivity(intent);
     }
 

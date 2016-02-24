@@ -11,10 +11,11 @@ import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.Core.Logger;
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
+import com.dev.mcp.matthew.bigtictactoe.Enums.ComputerPlayerType;
 import com.dev.mcp.matthew.bigtictactoe.Game.Board;
-import com.dev.mcp.matthew.bigtictactoe.Game.ComputerPlayerHard;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.App;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.CellStateHelper;
+import com.dev.mcp.matthew.bigtictactoe.Helpers.ComputerPlayerHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.MessagesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.SharedPreferencesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
@@ -32,6 +33,9 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
     @Inject
     CellStateHelper cellStateHelper;
+
+    @Inject
+    ComputerPlayerHelper computerPlayerHelper;
 
     @Inject
     SharedPreferencesHelper sharedPreferencesHelper;
@@ -60,7 +64,14 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
         logger.i("SingleGameActivity", "Loading...");
 
-        computerPlayer = new ComputerPlayerHard(CellState.XMark);
+        Bundle extras = getIntent().getExtras();
+        ComputerPlayerType computerPlayerType = null;
+        if (extras != null) {
+            String stringComputerPlayerType = extras.getString(getString(R.string.computerDifficulty_Key));
+            computerPlayerType = ComputerPlayerType.valueOf(stringComputerPlayerType);
+        }
+
+        computerPlayer = computerPlayerHelper.CreateComputerPlayer(computerPlayerType);
 
         logger.i("SingleGameActivity", "Loaded Successfully");
     }
