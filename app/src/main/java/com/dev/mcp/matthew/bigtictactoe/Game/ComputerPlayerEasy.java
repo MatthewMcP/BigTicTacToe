@@ -2,7 +2,7 @@ package com.dev.mcp.matthew.bigtictactoe.Game;
 
 import android.graphics.Point;
 
-import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
+import com.dev.mcp.matthew.bigtictactoe.Interfaces.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
 import com.dev.mcp.matthew.bigtictactoe.Enums.ComputerPlayerType;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.App;
@@ -34,7 +34,7 @@ public class ComputerPlayerEasy implements IComputerPlayer {
             result = minmax(2, myMark, Integer.MIN_VALUE, Integer.MAX_VALUE);
         }
 
-        return new Point(result[1], result[2]);
+        return new Point(result[0], result[1]);
     }
 
     public ComputerPlayerType getPlayerType() {

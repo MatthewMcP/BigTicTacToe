@@ -1,6 +1,6 @@
 package com.dev.mcp.matthew.bigtictactoe.Helpers;
 
-import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
+import com.dev.mcp.matthew.bigtictactoe.Interfaces.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
 import com.dev.mcp.matthew.bigtictactoe.Enums.ComputerPlayerType;
 import com.dev.mcp.matthew.bigtictactoe.Game.ComputerPlayerEasy;

@@ -13,7 +13,7 @@ import butterknife.OnClick;
 
 public class ChooseDifficultyActivity extends MyFullScreenActivity {
 
-    private String computerDifficultyKey = getString(R.string.computerDifficulty_Key);
+    private String computerDifficultyKey;
 
 
     @Override
@@ -21,6 +21,7 @@ public class ChooseDifficultyActivity extends MyFullScreenActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_difficulty);
         ButterKnife.bind(this);
+        computerDifficultyKey = getString(R.string.computerDifficulty_Key);
     }
 
     @OnClick(value = R.id.difficulty_easy_btn)

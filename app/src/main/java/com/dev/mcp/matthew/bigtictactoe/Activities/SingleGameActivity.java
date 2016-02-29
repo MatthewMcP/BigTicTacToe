@@ -7,19 +7,21 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dev.mcp.matthew.bigtictactoe.Core.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.Core.Logger;
 import com.dev.mcp.matthew.bigtictactoe.Core.MyFullScreenActivity;
 import com.dev.mcp.matthew.bigtictactoe.Enums.CellState;
 import com.dev.mcp.matthew.bigtictactoe.Enums.ComputerPlayerType;
 import com.dev.mcp.matthew.bigtictactoe.Game.Board;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.App;
-import com.dev.mcp.matthew.bigtictactoe.Helpers.CellStateHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.ComputerPlayerHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.MessagesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Helpers.SharedPreferencesHelper;
 import com.dev.mcp.matthew.bigtictactoe.Interfaces.IBoard;
+import com.dev.mcp.matthew.bigtictactoe.Interfaces.IComputerPlayer;
 import com.dev.mcp.matthew.bigtictactoe.R;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -30,9 +32,6 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
     @Inject
     Logger logger;
-
-    @Inject
-    CellStateHelper cellStateHelper;
 
     @Inject
     ComputerPlayerHelper computerPlayerHelper;
@@ -52,8 +51,7 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
     private boolean isOver = false;
 
-    private int[] idList = {R.id.cell11, R.id.cell12, R.id.cell13, R.id.cell21,
-            R.id.cell22, R.id.cell23, R.id.cell31, R.id.cell32, R.id.cell33};
+    private Map<Point, Integer> cellPointMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +61,8 @@ public class SingleGameActivity extends MyFullScreenActivity {
         ((App) getApplication()).getMyComponent().inject(this);
 
         logger.i("SingleGameActivity", "Loading...");
+
+        CreateDictionary();
 
         Bundle extras = getIntent().getExtras();
         ComputerPlayerType computerPlayerType = null;
@@ -74,6 +74,19 @@ public class SingleGameActivity extends MyFullScreenActivity {
         computerPlayer = computerPlayerHelper.CreateComputerPlayer(computerPlayerType);
 
         logger.i("SingleGameActivity", "Loaded Successfully");
+    }
+
+    private void CreateDictionary() {
+        cellPointMap = new HashMap<>();
+        cellPointMap.put(new Point(0, 0), R.id.cell11);
+        cellPointMap.put(new Point(0, 1), R.id.cell12);
+        cellPointMap.put(new Point(0, 2), R.id.cell13);
+        cellPointMap.put(new Point(1, 0), R.id.cell21);
+        cellPointMap.put(new Point(1, 1), R.id.cell22);
+        cellPointMap.put(new Point(1, 2), R.id.cell23);
+        cellPointMap.put(new Point(2, 0), R.id.cell31);
+        cellPointMap.put(new Point(2, 1), R.id.cell32);
+        cellPointMap.put(new Point(2, 2), R.id.cell33);
     }
 
     @OnClick(value = R.id.singlegame_reset)
@@ -88,10 +101,9 @@ public class SingleGameActivity extends MyFullScreenActivity {
     private void clear() {
         logger.i("SingleGameActivity", "Clearing the board");
 
-        for (int item : idList) {
+        for (int item : cellPointMap.values()) {
             TextView cell = (TextView) findViewById(item);
             cell.setBackgroundResource(R.drawable.cell);
-            cell.setText("");
         }
 
         isOver = false;
@@ -119,9 +131,9 @@ public class SingleGameActivity extends MyFullScreenActivity {
     public void cellClick(View v) {
 
         TextView cell = (TextView) findViewById(v.getId());
+        Point pointClicked = GetPlayerClickPoint(cell);
 
-        if (ValidMove(cell)) {
-            Point pointClicked = GetPlayerClickPoint(cell);
+        if (gameBoard.isValidMark(pointClicked)) {
             gameBoard.placeMark(pointClicked, playerMark);
             int playerDrawableId = getPlayerDrawable();
             cell.setBackgroundResource(playerDrawableId);
@@ -129,38 +141,14 @@ public class SingleGameActivity extends MyFullScreenActivity {
         }
     }
 
-    private boolean ValidMove(TextView cell) {
-        String content = (String) cell.getText();
-        CellState current = cellStateHelper.StringToCellState(content);
-
-        if (current == CellState.Empty && !isOver) {
-            return true;
-        }
-
-        return false;
-    }
-
+    //I don't like this -better option?
     private Point GetPlayerClickPoint(TextView cell) {
-        switch (cell.getId()) {
-            case R.id.cell11:
-                return new Point(0, 0);
-            case R.id.cell12:
-                return new Point(0, 1);
-            case R.id.cell13:
-                return new Point(0, 2);
-            case R.id.cell21:
-                return new Point(1, 0);
-            case R.id.cell22:
-                return new Point(1, 1);
-            case R.id.cell23:
-                return new Point(1, 2);
-            case R.id.cell31:
-                return new Point(2, 0);
-            case R.id.cell32:
-                return new Point(2, 1);
-            default:
-                return new Point(2, 2);
+        for (Map.Entry<Point, Integer> entry : cellPointMap.entrySet()) {
+            if (entry.getValue() == cell.getId()) {
+                return entry.getKey();
+            }
         }
+        return null;
     }
 
     private int getPlayerDrawable() {
@@ -215,11 +203,10 @@ public class SingleGameActivity extends MyFullScreenActivity {
     private void getAIMove(IBoard board) {
         logger.i("SingleGameActivity", "Getting AI move");
 
-        Point move = computerPlayer.getMove(board);
-        TextView cell = GetAiCell(move);
-
-        if (cell != null && cell.getText().equals("")) {
-            board.placeMark(move, aiMark);
+        Point computerMove = computerPlayer.getMove(board);
+        if (gameBoard.isValidMark(computerMove)) {
+            TextView cell = GetAiCell(computerMove);
+            board.placeMark(computerMove, aiMark);
             if (aiMark == CellState.XMark) {
                 cell.setBackgroundResource(R.drawable.cross_player);
             } else {
@@ -262,9 +249,5 @@ public class SingleGameActivity extends MyFullScreenActivity {
                 }
         }
         return null;
-    }
-
-    public void updateboard() {
-
     }
 }
