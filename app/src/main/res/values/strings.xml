@@ -3,9 +3,10 @@
 
     <!--Home-->
     <string name="title_activity_home">HomeActivity</string>
-    <string name="home_playBtnTxt">PLAY!</string>
-    <string name="home_settingsBtnTxt">SETTINGS</string>
-    <string name="home_aboutBtnTxt">ABOUT</string>
+    <string name="home_playBtnTxt">Play!</string>
+    <string name="home_settingsBtnTxt">Settings</string>
+    <string name="home_aboutBtnTxt">About</string>
+    <string name="home_aboutTxt">Early prototype made by Matthew McParland. Designed as a learning experience. Message MatthewMcP on Github.</string>
 
     <!--Difficulty-->
     <string name="title_activity_choose_difficulty">ChooseDifficultyActivity</string>
@@ -35,7 +36,7 @@
         </string>
 
     <!--Shared-->
-    <string name="shared_homeBtnTxt">HOME</string>
+    <string name="shared_homeBtnTxt">Home</string>
 
     <!--PlayerPreferences-->
     <string name="preference_player_settings">Players Preferences</string>
