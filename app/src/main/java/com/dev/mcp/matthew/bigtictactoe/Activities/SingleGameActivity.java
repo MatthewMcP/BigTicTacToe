@@ -76,6 +76,12 @@ public class SingleGameActivity extends MyFullScreenActivity {
         logger.i("SingleGameActivity", "Loaded Successfully");
     }
 
+    @Override
+    public void onBackPressed() {
+        clear();
+        super.onBackPressed();
+    }
+
     private void CreateDictionary() {
         cellPointMap = new HashMap<>();
         cellPointMap.put(new Point(0, 0), R.id.cell11);
@@ -130,14 +136,16 @@ public class SingleGameActivity extends MyFullScreenActivity {
 
     public void cellClick(View v) {
 
-        TextView cell = (TextView) findViewById(v.getId());
-        Point pointClicked = GetPlayerClickPoint(cell);
+        if (!isOver) {
+            TextView cell = (TextView) findViewById(v.getId());
+            Point pointClicked = GetPlayerClickPoint(cell);
 
-        if (gameBoard.isValidMark(pointClicked)) {
-            gameBoard.placeMark(pointClicked, playerMark);
-            int playerDrawableId = getPlayerDrawable();
-            cell.setBackgroundResource(playerDrawableId);
-            EndOfTurn(playerMark);
+            if (gameBoard.isValidMark(pointClicked)) {
+                gameBoard.placeMark(pointClicked, playerMark);
+                int playerDrawableId = getPlayerDrawable();
+                cell.setBackgroundResource(playerDrawableId);
+                EndOfTurn(playerMark);
+            }
         }
     }
 
