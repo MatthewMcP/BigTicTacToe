@@ -26,15 +26,15 @@ public class ComputerPlayerEasy implements IComputerPlayer {
         List<int[]> emptyCells = GetEmptyCells();
 
         int randomInt = new Random().nextInt(10);
-        int[] result;
+
         if (randomInt > 3) {
-            result = emptyCells.get(new Random().nextInt(emptyCells.size()));
+            int[] randomResult = emptyCells.get(new Random().nextInt(emptyCells.size()));
+            return new Point(randomResult[0], randomResult[1]);
 
         } else {
-            result = minmax(2, myMark, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            int[] result = minmax(2, myMark, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            return new Point(result[1], result[2]);
         }
-
-        return new Point(result[0], result[1]);
     }
 
     public ComputerPlayerType getPlayerType() {

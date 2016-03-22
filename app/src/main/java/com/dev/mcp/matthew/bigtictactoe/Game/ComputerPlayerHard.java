@@ -13,20 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComputerPlayerHard implements IComputerPlayer {
-    protected CellState myMark;
+    protected CellState marker;
     protected CellState[][] board;
 
     public ComputerPlayerHard(CellState marker) {
-        myMark = marker;
+        this.marker = marker;
     }
 
     public Point getMove(IBoard board) {
         this.board = board.getBoard();
-        int[] result = minmax(2, myMark, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        int[] result = minmax(2, marker, Integer.MIN_VALUE, Integer.MAX_VALUE);
 
-
-        //NEEDS to be remove
-        return new Point(result[0], result[1]);
+        return new Point(result[1], result[2]);
     }
 
     public ComputerPlayerType getPlayerType() {
@@ -63,9 +61,9 @@ public class ComputerPlayerHard implements IComputerPlayer {
             for (int[] move : nextMoves) {
                 // try this move for the current "player"
                 board[move[0]][move[1]] = player;
-                if (player == myMark) { // mySeed (computer) is maximizing
+                if (player == marker) { // mySeed (computer) is maximizing
                     // player
-                    if (myMark == CellState.XMark) {
+                    if (marker == CellState.XMark) {
                         score = minmax(depth - 1, CellState.OMark, alpha, beta)[0];
                     } else {
                         score = minmax(depth - 1, CellState.XMark, alpha, beta)[0];
@@ -76,7 +74,7 @@ public class ComputerPlayerHard implements IComputerPlayer {
                         bestCol = move[1];
                     }
                 } else { // oppSeed is minimizing player
-                    score = minmax(depth - 1, myMark, alpha, beta)[0];
+                    score = minmax(depth - 1, marker, alpha, beta)[0];
                     if (score < beta) {
                         beta = score;
                         bestRow = move[0];
@@ -90,7 +88,7 @@ public class ComputerPlayerHard implements IComputerPlayer {
                     break;
             }
         }
-        return new int[]{(player == myMark) ? alpha : beta, bestRow, bestCol};
+        return new int[]{(player == marker) ? alpha : beta, bestRow, bestCol};
     }
 
     private List<int[]> generateMoves() {
@@ -138,14 +136,14 @@ public class ComputerPlayerHard implements IComputerPlayer {
         int score = 0;
 
         // First cell
-        if (board[row1][col1] == myMark) {
+        if (board[row1][col1] == marker) {
             score = 1;
         } else if (board[row1][col1] != CellState.Empty) {
             score = -1;
         }
 
         // Second cell
-        if (board[row2][col2] == myMark) {
+        if (board[row2][col2] == marker) {
             if (score == 1) { // cell1 is mySeed
                 score = 10;
             } else if (score == -1) { // cell1 is oppSeed
@@ -164,7 +162,7 @@ public class ComputerPlayerHard implements IComputerPlayer {
         }
 
         // Third cell
-        if (board[row3][col3] == myMark) {
+        if (board[row3][col3] == marker) {
             if (score > 0) { // cell1 and/or cell2 is mySeed
                 score *= 10;
             } else if (score < 0) { // cell1 and/or cell2 is oppSeed
